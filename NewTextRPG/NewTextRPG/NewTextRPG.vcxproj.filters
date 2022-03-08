@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Obj">
+      <UniqueIdentifier>{6e9e33a8-cc75-4ac5-b46d-60df521512fa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obj\Player">
+      <UniqueIdentifier>{c223dc9e-b1f2-44e1-93a8-554bc5491cfc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene">
+      <UniqueIdentifier>{49c38237-06a1-4165-9f10-0d0c8112d675}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\GameStage">
+      <UniqueIdentifier>{af96ba39-221f-43d7-ae08-cb5d7a88987a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\HuntingField">
+      <UniqueIdentifier>{182888fe-e29e-428d-8323-ce881037e049}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Obj\Monster">
+      <UniqueIdentifier>{15a2200f-e370-4579-9c06-c5cbca18d047}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Store">
+      <UniqueIdentifier>{30db76e4-7c19-45b0-a363-e45f1c9fcd7e}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="stdafx.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="GameStage.h">
+      <Filter>Scene\GameStage</Filter>
+    </ClInclude>
+    <ClInclude Include="Define.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Obj.h">
+      <Filter>Obj</Filter>
+    </ClInclude>
+    <ClInclude Include="Player.h">
+      <Filter>Obj\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="HuntingField.h">
+      <Filter>Scene\HuntingField</Filter>
+    </ClInclude>
+    <ClInclude Include="Monster.h">
+      <Filter>Obj\Monster</Filter>
+    </ClInclude>
+    <ClInclude Include="Store.h">
+      <Filter>Scene\Store</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="GameStage.cpp">
+      <Filter>Scene\GameStage</Filter>
+    </ClCompile>
+    <ClCompile Include="Obj.cpp">
+      <Filter>Obj</Filter>
+    </ClCompile>
+    <ClCompile Include="Player.cpp">
+      <Filter>Obj\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="HuntingField.cpp">
+      <Filter>Scene\HuntingField</Filter>
+    </ClCompile>
+    <ClCompile Include="Monster.cpp">
+      <Filter>Obj\Monster</Filter>
+    </ClCompile>
+    <ClCompile Include="Store.cpp">
+      <Filter>Scene\Store</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

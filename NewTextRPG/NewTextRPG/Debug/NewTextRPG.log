@@ -1,0 +1,11 @@
+﻿  stdafx.cpp
+  Store.cpp
+  Player.cpp
+  Obj.cpp
+  Monster.cpp
+  main.cpp
+  HuntingField.cpp
+  GameStage.cpp
+  코드를 생성하고 있습니다...
+  NewTextRPG.vcxproj -> C:\Users\benfs\Source\Repos\text_rpg\NewTextRPG\Debug\NewTextRPG.exe
+  NewTextRPG.vcxproj -> C:\Users\benfs\Source\Repos\text_rpg\NewTextRPG\Debug\NewTextRPG.pdb (Full PDB)
