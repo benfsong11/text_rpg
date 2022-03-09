@@ -18,6 +18,8 @@ public:
 	void ObtainExp(int _iExp);
 	void ReduceExp();
 	void ReduceMoney();
+	void EquipItem(CObj* _pItem);
+	void ReleaseItem(CObj* _pItem);
 
 	virtual void Initialize();
 	virtual void Render();

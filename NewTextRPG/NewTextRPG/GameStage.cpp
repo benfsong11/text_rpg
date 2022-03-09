@@ -7,6 +7,7 @@ CGameStage::CGameStage()
 	m_pPlayer = nullptr;
 	m_pHuntingField = nullptr;
 	m_pStore = nullptr;
+	m_pInventory = nullptr;
 }
 
 CGameStage::~CGameStage()
@@ -33,6 +34,12 @@ void CGameStage::Initialize()
 			m_pPlayer = new CPlayer;
 		}
 		static_cast<CPlayer*>(m_pPlayer)->SelectJob();
+		if (!m_pInventory)
+		{
+			m_pInventory = new CInventory;
+			m_pInventory->Initialize();
+			m_pInventory->SetPlayer(m_pPlayer);
+		}
 		break;
 	case 2:
 		break;
@@ -76,6 +83,10 @@ void CGameStage::Update()
 			m_pStore->Update();
 			break;
 		case 3:
+			if (nullptr != m_pInventory)
+			{
+				m_pInventory->Update();
+			}
 			break;
 		case 4:
 			return;
@@ -89,4 +100,6 @@ void CGameStage::Release()
 {
 	SafeDelete(m_pPlayer);
 	SafeDelete(m_pHuntingField);
+	SafeDelete(m_pStore);
+	SafeDelete(m_pInventory);
 }

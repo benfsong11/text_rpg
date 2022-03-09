@@ -5,6 +5,7 @@
 CStore::CStore()
 {
 	m_pPlayer = nullptr;
+	m_pInventory = nullptr;
 	m_vecItem[ITEM_WEAPON].reserve(3);
 	m_vecItem[ITEM_ARMOR].reserve(3);
 }
@@ -22,11 +23,36 @@ void CStore::SetPlayer(CObj * _pPlayer)
 
 void CStore::Initialize(void)
 {
+	
 }
 
 void CStore::Update(void)
 {
 	int iInput = 0;
+
+	CItem* pBeginnerWeapon = new CItem;
+	pBeginnerWeapon->SetItem(ITEM_WEAPON, BEGINNER);
+	m_vecItem[ITEM_WEAPON].push_back(pBeginnerWeapon);
+
+	CItem* pIntermediateWeapon = new CItem;
+	pIntermediateWeapon->SetItem(ITEM_WEAPON, INTERMEDIATE);
+	m_vecItem[ITEM_WEAPON].push_back(pIntermediateWeapon);
+
+	CItem* pAdvancedWeapon = new CItem;
+	pAdvancedWeapon->SetItem(ITEM_WEAPON, ADVANCED);
+	m_vecItem[ITEM_WEAPON].push_back(pAdvancedWeapon);
+
+	CItem* pBeginnerArmor = new CItem;
+	pBeginnerArmor->SetItem(ITEM_ARMOR, BEGINNER);
+	m_vecItem[ITEM_ARMOR].push_back(pBeginnerArmor);
+
+	CItem* pIntermediateArmor = new CItem;
+	pIntermediateArmor->SetItem(ITEM_ARMOR, INTERMEDIATE);
+	m_vecItem[ITEM_ARMOR].push_back(pIntermediateArmor);
+
+	CItem* pAdvancedArmor = new CItem;
+	pAdvancedArmor->SetItem(ITEM_ARMOR, ADVANCED);
+	m_vecItem[ITEM_ARMOR].push_back(pAdvancedArmor);
 
 	while (true)
 	{
@@ -97,9 +123,18 @@ void CStore::Release(void)
 	}
 }
 
-void CStore::BuyItem(CObj * pItem)
+void CStore::BuyItem(CObj* _pItem)
 {
-	
+	if (m_pPlayer->GetInfo().iMoney >= _pItem->GetInfo().iMoney)
+	{
+		m_pPlayer->ButItem(_pItem->GetInfo().iMoney);
+		cout << "아이템을 구매하셨습니다!" << endl;
+	}
+	else
+	{
+		cout << "인벤토리 칸이 가득 찼거나 잔액이 부족합니다." << endl;
+	}
+	system("pause");
 }
 
 void CStore::SellItem(void)

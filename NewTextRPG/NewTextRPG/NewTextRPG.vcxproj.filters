@@ -34,6 +34,12 @@
     <Filter Include="Scene\Store">
       <UniqueIdentifier>{30db76e4-7c19-45b0-a363-e45f1c9fcd7e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Obj\Item">
+      <UniqueIdentifier>{45672f84-9129-43f3-a83b-2131679c3e60}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Inventory">
+      <UniqueIdentifier>{b3fccc4d-354f-452b-9f9c-a834fa217b16}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -66,6 +72,12 @@
     <ClInclude Include="Store.h">
       <Filter>Scene\Store</Filter>
     </ClInclude>
+    <ClInclude Include="Item.h">
+      <Filter>Obj\Item</Filter>
+    </ClInclude>
+    <ClInclude Include="Inventory.h">
+      <Filter>Scene\Inventory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -91,6 +103,12 @@
     </ClCompile>
     <ClCompile Include="Store.cpp">
       <Filter>Scene\Store</Filter>
+    </ClCompile>
+    <ClCompile Include="Item.cpp">
+      <Filter>Obj\Item</Filter>
+    </ClCompile>
+    <ClCompile Include="Inventory.cpp">
+      <Filter>Scene\Inventory</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -112,6 +112,14 @@ void CPlayer::ReduceMoney()
 	}
 }
 
+void CPlayer::EquipItem(CObj * _pItem)
+{
+}
+
+void CPlayer::ReleaseItem(CObj * _pItem)
+{
+}
+
 void CPlayer::Initialize()
 {
 }
