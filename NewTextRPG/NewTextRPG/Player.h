@@ -1,14 +1,16 @@
 #pragma once
 #include "Obj.h"
+#include "Define.h"
 
 class CPlayer : public CObj
 {
 private:
 
-
 public:
 	CPlayer();
 	virtual ~CPlayer();
+
+	void LoadData();
 
 	void SelectJob();
 
@@ -19,7 +21,7 @@ public:
 	void ReduceExp();
 	void ReduceMoney();
 	void EquipItem(CObj* _pItem);
-	void ReleaseItem(CObj* _pItem);
+	void ReleaseItem(int _iInput);
 
 	virtual void Initialize();
 	virtual void Render();

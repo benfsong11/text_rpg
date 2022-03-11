@@ -12,6 +12,8 @@ typedef struct tagInfo
 	int iMoney;
 	int AdditionalHp;
 	int AdditionalPower;
+	char szWeaponName[32];
+	char szArmorName[32];
 } INFO;
 
 template<typename T>

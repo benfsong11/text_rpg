@@ -7,6 +7,7 @@ CItem::CItem()
 }
 
 
+
 CItem::~CItem()
 {
 }
@@ -91,7 +92,6 @@ void CItem::Initialize()
 void CItem::Render()
 {
 	cout << "===========================================" << endl;
-	cout << "구매 가능 장비 정보" << endl;
 	cout << "이름: " << m_tInfo.szName << endl;
 	cout << "레벨: " << m_tInfo.iLevel << endl;
 	cout << "체력: " << m_tInfo.iHp << endl;

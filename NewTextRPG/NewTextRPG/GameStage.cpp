@@ -15,6 +15,53 @@ CGameStage::~CGameStage()
 	Release();
 }
 
+void CGameStage::SaveData()
+{
+	FILE* fp = nullptr;
+	errno_t	err = fopen_s(&fp, "../Data/Save.dat", "wb");
+
+
+	if (0 == err)
+	{
+		fwrite(&(m_pPlayer->GetInfo()), sizeof(INFO), 1, fp);
+		// fwrite(&(m_pInventory->GetInventory()), sizeof(vector<CObj*>), 1, fp);
+		cout << "저장 성공" << endl;
+		fclose(fp);
+	}
+	else
+		cout << "저장 실패" << endl;
+
+	system("pause");
+	
+}
+
+
+/*void CGameStage::LoadData()
+{
+	FILE* fp = nullptr;
+	errno_t	err = fopen_s(&fp, "../Data/Save.dat", "rb");
+
+	if (0 == err)
+	{
+		INFO tInfo = {};
+		vector<CObj*> loadVec;
+
+		fread(&tInfo, sizeof(INFO), 1, fp);
+		// fread(&loadVec, sizeof(vector<CObj*>), 1, fp);
+
+		m_tLoadInfo = tInfo;
+		// m_vecLoadData = loadVec;
+
+		cout << "불러오기 성공" << endl;
+		fclose(fp);
+	}
+	else
+		cout << "불러오기 실패" << endl;
+
+	system("pause");
+
+}*/
+
 void CGameStage::Initialize()
 {
 	int iInput = 0;
@@ -23,7 +70,7 @@ void CGameStage::Initialize()
 	cout << "Text RPG에 오신 것을 환영합니다!" << endl;
 	cout << "직업을 선택하고 몬스터를 처리해 주세요!" << endl;
 	cout << "===========================================" << endl;
-	cout << "1. 게임 시작 2. 불러오기 3. 종료하기 > ";
+	cout << "1. 게임 시작 2. 종료하기 > ";
 	cin >> iInput;
 
 	switch (iInput)
@@ -33,17 +80,15 @@ void CGameStage::Initialize()
 		{
 			m_pPlayer = new CPlayer;
 		}
-		static_cast<CPlayer*>(m_pPlayer)->SelectJob();
 		if (!m_pInventory)
 		{
 			m_pInventory = new CInventory;
 			m_pInventory->Initialize();
 			m_pInventory->SetPlayer(m_pPlayer);
 		}
+		static_cast<CPlayer*>(m_pPlayer)->SelectJob();
 		break;
 	case 2:
-		break;
-	case 3:
 		return;
 	default:
 		break;
@@ -54,12 +99,13 @@ void CGameStage::Update()
 {
 	int iInput = 0;
 
+
 	while (true)
 	{
 		system("cls");
 		m_pPlayer->Render();
 
-		cout << "1. 사냥터 2. 상점 3. 인벤토리 4. 종료하기 > ";
+		cout << "1. 사냥터 2. 상점 3. 인벤토리 4. 저장하기 5. 종료하기 > ";
 		cin >> iInput;
 
 		switch (iInput)
@@ -69,6 +115,7 @@ void CGameStage::Update()
 			{
 				m_pHuntingField = new CHuntingField;
 				m_pHuntingField->SetPlayer(m_pPlayer);
+				m_pHuntingField->SetInven(m_pInventory);
 			}
 			m_pHuntingField->Update();
 			break;
@@ -78,7 +125,7 @@ void CGameStage::Update()
 				m_pStore = new CStore;
 				m_pStore->Initialize();
 				m_pStore->SetPlayer(m_pPlayer);
-				// m_pStore->Set_Inven(m_pInven);
+				m_pStore->SetInven(m_pInventory);
 			}
 			m_pStore->Update();
 			break;
@@ -89,6 +136,9 @@ void CGameStage::Update()
 			}
 			break;
 		case 4:
+			SaveData();
+			break;
+		case 5:
 			return;
 		default:
 			continue;

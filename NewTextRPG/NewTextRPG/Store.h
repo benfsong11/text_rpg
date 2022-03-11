@@ -16,6 +16,8 @@ public:
 	~CStore();
 
 	void SetPlayer(CObj* _pPlayer);
+	void SetInven(CInventory* _pInven);
+	vector<CObj*> GetItem();
 
 	void Initialize(void);
 	void Update(void);

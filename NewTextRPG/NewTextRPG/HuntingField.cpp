@@ -6,6 +6,7 @@ CHuntingField::CHuntingField()
 {
 	m_pPlayer = nullptr;
 	m_pMonster = nullptr;
+	m_pInventory = nullptr;
 }
 
 
@@ -18,6 +19,13 @@ void CHuntingField::SetPlayer(CObj * _pPlayer)
 {
 	m_pPlayer = _pPlayer;
 }
+
+void CHuntingField::SetInven(CInventory * _pInventory)
+{
+	m_pInventory = _pInventory;
+}
+
+
 
 void CHuntingField::Hunt()
 {
@@ -84,7 +92,7 @@ void CHuntingField::Update()
 		system("cls");
 		m_pPlayer->Render();
 
-		cout << "1. 초급 던전 2. 중급 던전 3. 고급 던전 4. 저장하기 5. 뒤로 가기 > ";
+		cout << "1. 초급 던전 2. 중급 던전 3. 고급 던전 4. 뒤로 가기 > ";
 		cin >> iInput;
 
 		switch (iInput)
@@ -102,8 +110,6 @@ void CHuntingField::Update()
 			static_cast<CMonster*>(m_pMonster)->CreateMonster(iInput);
 			break;
 		case 4:
-			break;
-		case 5:
 			return;
 		default:
 			continue;

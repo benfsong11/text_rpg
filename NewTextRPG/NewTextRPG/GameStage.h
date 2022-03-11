@@ -17,6 +17,9 @@ private:
 public:
 	CGameStage();
 	~CGameStage();
+
+	void SaveData();
+	// void LoadData();
 	
 	void Initialize();
 	void Update();

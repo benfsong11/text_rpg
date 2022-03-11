@@ -21,9 +21,18 @@ void CStore::SetPlayer(CObj * _pPlayer)
 	m_pPlayer = _pPlayer;
 }
 
+void CStore::SetInven(CInventory * _pInven)
+{
+	m_pInventory = _pInven;
+}
+
+vector<CObj*> CStore::GetItem()
+{
+	return m_vecItem[ITEM_END];
+}
+
 void CStore::Initialize(void)
 {
-	
 }
 
 void CStore::Update(void)
@@ -108,7 +117,6 @@ void CStore::Render(ITEM_TYPE _eType)
 
 		if (4 == iInput)
 			return;
-
 		BuyItem(m_vecItem[_eType][iInput - 1]);
 	}
 }
@@ -125,10 +133,11 @@ void CStore::Release(void)
 
 void CStore::BuyItem(CObj* _pItem)
 {
-	if (m_pPlayer->GetInfo().iMoney >= _pItem->GetInfo().iMoney)
+	if ((m_pPlayer->GetInfo().iMoney >= _pItem->GetInfo().iMoney) && (m_pInventory->GetInventory().size() < 5))
 	{
 		m_pPlayer->ButItem(_pItem->GetInfo().iMoney);
-		cout << "아이템을 구매하셨습니다!" << endl;
+		m_pInventory->SetInventory(_pItem);
+		cout << "아이템을 구매하셨습니다!" << endl;	
 	}
 	else
 	{
@@ -139,4 +148,21 @@ void CStore::BuyItem(CObj* _pItem)
 
 void CStore::SellItem(void)
 {
+	int iInput = 0;
+
+	while (true)
+	{
+		system("cls");
+
+		m_pPlayer->Render();
+		m_pInventory->Render();
+
+		cout << "#. 판매할 아이템 번호 0. 뒤로 가기 > ";
+		cin >> iInput;
+
+		if (0 == iInput)
+			return;
+		m_pInventory->SellItem(iInput);
+	}
+	
 }

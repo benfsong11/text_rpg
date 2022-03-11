@@ -6,6 +6,7 @@ CInventory::CInventory()
 	: m_iSize(5)
 {
 	m_pPlayer = nullptr;
+	m_vecInventory.reserve(m_iSize);
 }
 
 
@@ -18,6 +19,17 @@ void CInventory::SetPlayer(CObj* _pPlayer)
 	m_pPlayer = _pPlayer;
 }
 
+void CInventory::SetInventory(CObj* _pItem)
+{
+	m_vecInventory.push_back(_pItem);
+}
+
+vector<CObj*> CInventory::GetInventory()
+{
+	return m_vecInventory;
+}
+
+
 void CInventory::EquipItem()
 {
 	int	iInput = 0;
@@ -28,7 +40,7 @@ void CInventory::EquipItem()
 		m_pPlayer->Render();
 		Render();
 
-		cout << "0. 나가기 > ";
+		cout << "#. 장착할 아이템 번호 0. 나가기 > ";
 		cin >> iInput;
 		--iInput;
 
@@ -39,11 +51,38 @@ void CInventory::EquipItem()
 			continue;
 
 		dynamic_cast<CPlayer*>(m_pPlayer)->EquipItem(m_vecInventory[iInput]);
+		// m_vecInventory.erase(m_vecInventory.begin() + iInput);
 	}
 }
 
 void CInventory::ReleaseItem()
 {
+	int	iInput = 0;
+
+	while (true)
+	{
+		system("cls");
+		m_pPlayer->Render();
+		Render();
+
+		cout << "1. 무기 해제 2. 방어구 해제 0. 뒤로 가기 > ";
+		cin >> iInput;
+		// --iInput;
+
+		if (0 >= iInput || 3 <= iInput)
+			return;
+
+		// if ((size_t)iInput >= m_vecInventory.size())
+			// continue;
+
+		dynamic_cast<CPlayer*>(m_pPlayer)->ReleaseItem(iInput);
+		// m_vecInventory.push_back(ReleasedItem);
+	}
+}
+
+void CInventory::SellItem(int _iInput)
+{
+	m_vecInventory.erase(m_vecInventory.begin() + _iInput - 1);
 }
 
 void CInventory::Initialize()
@@ -84,10 +123,22 @@ void CInventory::Update()
 
 void CInventory::Render()
 {
-	for (size_t i = 0; i < m_vecInventory.size(); ++i)
+	if (0 == m_vecInventory.size())
 	{
-		cout << i + 1 << "번 아이템" << endl;
-		m_vecInventory[i]->Render();
+		cout << "===========================================" << endl;
+		cout << "아이템이 없습니다." << endl;
+		cout << "===========================================" << endl;
+	}
+	else
+	{
+		for (size_t i = 0; i < m_vecInventory.size(); ++i)
+		{
+			cout << i + 1 << "번 아이템" << endl;
+			cout << "===========================================" << endl;
+			cout << "이름: " << m_vecInventory[i]->GetInfo().szName << endl;
+			cout << "판매 가격: " << (m_vecInventory[i]->GetInfo().iMoney) / 2 << endl;
+			cout << "===========================================" << endl;
+		}
 	}
 }
 
