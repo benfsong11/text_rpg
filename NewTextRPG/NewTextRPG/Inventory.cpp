@@ -12,11 +12,17 @@ CInventory::CInventory()
 
 CInventory::~CInventory()
 {
+	Release();
 }
 
 void CInventory::SetPlayer(CObj* _pPlayer)
 {
 	m_pPlayer = _pPlayer;
+}
+
+void CInventory::SetLoadInven(vector<CObj*>& _vec)
+{
+	m_vecInventory = _vec;
 }
 
 void CInventory::SetInventory(CObj* _pItem)

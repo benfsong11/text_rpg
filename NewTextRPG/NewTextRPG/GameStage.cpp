@@ -25,6 +25,7 @@ void CGameStage::SaveData()
 	{
 		fwrite(&(m_pPlayer->GetInfo()), sizeof(INFO), 1, fp);
 		// fwrite(&(m_pInventory->GetInventory()), sizeof(vector<CObj*>), 1, fp);
+		
 		cout << "저장 성공" << endl;
 		fclose(fp);
 	}
@@ -34,33 +35,6 @@ void CGameStage::SaveData()
 	system("pause");
 	
 }
-
-
-/*void CGameStage::LoadData()
-{
-	FILE* fp = nullptr;
-	errno_t	err = fopen_s(&fp, "../Data/Save.dat", "rb");
-
-	if (0 == err)
-	{
-		INFO tInfo = {};
-		vector<CObj*> loadVec;
-
-		fread(&tInfo, sizeof(INFO), 1, fp);
-		// fread(&loadVec, sizeof(vector<CObj*>), 1, fp);
-
-		m_tLoadInfo = tInfo;
-		// m_vecLoadData = loadVec;
-
-		cout << "불러오기 성공" << endl;
-		fclose(fp);
-	}
-	else
-		cout << "불러오기 실패" << endl;
-
-	system("pause");
-
-}*/
 
 void CGameStage::Initialize()
 {
@@ -132,7 +106,10 @@ void CGameStage::Update()
 		case 3:
 			if (nullptr != m_pInventory)
 			{
+				/*if (0 < static_cast<CPlayer*>(m_pPlayer)->GetLoadVec().size())
+					m_pInventory->SetLoadInven(static_cast<CPlayer*>(m_pPlayer)->GetLoadVec());*/
 				m_pInventory->Update();
+				
 			}
 			break;
 		case 4:

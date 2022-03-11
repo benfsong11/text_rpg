@@ -122,4 +122,5 @@ void CHuntingField::Update()
 void CHuntingField::Release()
 {
 	SafeDelete(m_pMonster);
+	SafeDelete(m_pInventory);
 }

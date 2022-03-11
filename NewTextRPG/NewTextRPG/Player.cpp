@@ -22,13 +22,11 @@ void CPlayer::LoadData()
 	if (0 == err)
 	{
 		INFO tInfo = {};
-		// vector<CObj*> loadVec;
 
 		fread(&tInfo, sizeof(INFO), 1, fp);
-		// fread(&loadVec, sizeof(vector<CObj*>), 1, fp);
+		// fread(&m_loadVec, sizeof(vector<CObj*>), 1, fp);
 
 		m_tInfo = tInfo;
-		// m_vecLoadData = loadVec;
 
 		cout << "불러오기 성공" << endl;
 		fclose(fp);
@@ -38,6 +36,11 @@ void CPlayer::LoadData()
 
 	system("pause");
 
+}
+
+vector<CObj*> CPlayer::GetLoadVec()
+{
+	return m_loadVec;
 }
 
 
@@ -98,6 +101,7 @@ void CPlayer::SelectJob()
 		LoadData();
 		break;
 	case 5:
+		exit(0);
 		return;
 	default:
 		break;

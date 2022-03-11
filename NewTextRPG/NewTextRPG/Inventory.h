@@ -14,6 +14,7 @@ public:
 	~CInventory();
 
 	void SetPlayer(CObj* _pPlayer);
+	void CInventory::SetLoadInven(vector<CObj*>& _vec);
 	void SetInventory(CObj* _pItem);
 	vector<CObj*> GetInventory();
 
