@@ -51,7 +51,7 @@ void CInventory::EquipItem()
 			continue;
 
 		dynamic_cast<CPlayer*>(m_pPlayer)->EquipItem(m_vecInventory[iInput]);
-		// m_vecInventory.erase(m_vecInventory.begin() + iInput);
+		m_vecInventory.erase(m_vecInventory.begin() + iInput);
 	}
 }
 
@@ -75,13 +75,18 @@ void CInventory::ReleaseItem()
 		// if ((size_t)iInput >= m_vecInventory.size())
 			// continue;
 
-		dynamic_cast<CPlayer*>(m_pPlayer)->ReleaseItem(iInput);
-		// m_vecInventory.push_back(ReleasedItem);
+		CObj* ReleasedItem = dynamic_cast<CPlayer*>(m_pPlayer)->ReleaseItem(iInput);
+		if (ReleasedItem)
+		{
+			m_vecInventory.push_back(ReleasedItem);
+		}
+		dynamic_cast<CPlayer*>(m_pPlayer)->ReleaseInven(iInput);
 	}
 }
 
 void CInventory::SellItem(int _iInput)
 {
+	static_cast<CPlayer*>(m_pPlayer)->EarnMoney((m_vecInventory[_iInput - 1]->GetInfo().iMoney) / 2);
 	m_vecInventory.erase(m_vecInventory.begin() + _iInput - 1);
 }
 

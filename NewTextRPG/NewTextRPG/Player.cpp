@@ -4,6 +4,7 @@
 
 CPlayer::CPlayer()
 {
+	m_pEmpty = nullptr;
 }
 
 
@@ -151,15 +152,18 @@ void CPlayer::ReduceMoney()
 
 void CPlayer::EquipItem(CObj* _pItem)
 {
+	// 장비가 가지고 있는 HP값이 0인 경우 -> 무기인 경우
 	if (_pItem->GetInfo().iHp == 0)
 	{
+		m_vecInven[ITEM_WEAPON].push_back(_pItem);
 		strcpy_s(m_tInfo.szWeaponName, 32, _pItem->GetInfo().szName);
 		m_tInfo.AdditionalPower = _pItem->GetInfo().iPower;
 		m_tInfo.iPower += m_tInfo.AdditionalPower;
 	}
-	
+	// 장비가 가지고 있는 공격력값이 0인 경우 -> 방어구인 경우
 	else if (_pItem->GetInfo().iPower == 0)
 	{
+		m_vecInven[ITEM_ARMOR].push_back(_pItem);
 		strcpy_s(m_tInfo.szArmorName, 32, _pItem->GetInfo().szName);
 		m_tInfo.AdditionalHp = _pItem->GetInfo().iHp;
 		m_tInfo.iHp += m_tInfo.AdditionalHp;
@@ -169,22 +173,48 @@ void CPlayer::EquipItem(CObj* _pItem)
 	
 }
 
-void CPlayer::ReleaseItem(int _iInput)
+CObj* CPlayer::ReleaseItem(int _iInput)
 {
 	switch (_iInput)
 	{
 	case 1:
-		strcpy_s(m_tInfo.szWeaponName, 32, "");
-		m_tInfo.AdditionalPower = 0;
-		break;
+		if (1 == m_vecInven[ITEM_WEAPON].size())
+		{
+			strcpy_s(m_tInfo.szWeaponName, 32, "");
+			m_tInfo.iPower -= m_tInfo.AdditionalPower;
+			m_tInfo.AdditionalPower = 0;
+			return m_vecInven[ITEM_WEAPON][_iInput - 1];
+		}
+		else
+		{
+			cout << "해제할 아이템이 없습니다." << endl;
+			system("pause");
+			return m_pEmpty;
+		}
 	case 2:
-		strcpy_s(m_tInfo.szArmorName, 32, "");
-		m_tInfo.AdditionalHp = 0;
-		break;
+		if (1 == m_vecInven[ITEM_ARMOR].size())
+		{
+			strcpy_s(m_tInfo.szArmorName, 32, "");
+			m_tInfo.iHp -= m_tInfo.AdditionalHp;
+			m_tInfo.iMaxHp -= m_tInfo.AdditionalHp;
+			m_tInfo.AdditionalHp = 0;
+			return m_vecInven[ITEM_ARMOR][_iInput - 2];
+		}
+		else
+		{
+			cout << "해제할 아이템이 없습니다." << endl;
+			system("pause");
+			return m_pEmpty;
+		}
 	default:
 		break;
 	}
-	
+}
+
+void CPlayer::ReleaseInven(int _iInput)
+{
+	if (1 == m_vecInven[_iInput - 1].size())
+		m_vecInven[_iInput - 1].erase(m_vecInven[_iInput - 1].begin());
 }
 
 void CPlayer::Initialize()
@@ -207,4 +237,9 @@ void CPlayer::Render()
 
 void CPlayer::Release()
 {
+	for_each(m_vecInven[ITEM_END].begin(), m_vecInven[ITEM_END].end(), SafeDelete<CObj*>);
+	m_vecInven[ITEM_END].clear();
+	vector<CObj*>().swap(m_vecInven[ITEM_END]);
+
+	SafeDelete(m_pEmpty);
 }

@@ -6,8 +6,6 @@ CItem::CItem()
 {
 }
 
-
-
 CItem::~CItem()
 {
 }

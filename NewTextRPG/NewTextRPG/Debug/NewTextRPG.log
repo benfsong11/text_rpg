@@ -1,13 +1,3 @@
-﻿  stdafx.cpp
-  main.cpp
-  Store.cpp
-  Player.cpp
-  Obj.cpp
-  Monster.cpp
-  Item.cpp
-  Inventory.cpp
-  HuntingField.cpp
-  GameStage.cpp
-  코드를 생성하고 있습니다...
+﻿  Inventory.cpp
   NewTextRPG.vcxproj -> C:\Users\benfs\Source\Repos\text_rpg\NewTextRPG\Debug\NewTextRPG.exe
   NewTextRPG.vcxproj -> C:\Users\benfs\Source\Repos\text_rpg\NewTextRPG\Debug\NewTextRPG.pdb (Full PDB)

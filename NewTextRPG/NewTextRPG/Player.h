@@ -5,7 +5,8 @@
 class CPlayer : public CObj
 {
 private:
-
+	vector<CObj*> m_vecInven[ITEM_END]; // 플레이어가 장착한 장비의 벡터
+	CObj* m_pEmpty; // 해제할 아이템이 없을 경우 반환할 nullptr 객체
 public:
 	CPlayer();
 	virtual ~CPlayer();
@@ -21,7 +22,8 @@ public:
 	void ReduceExp();
 	void ReduceMoney();
 	void EquipItem(CObj* _pItem);
-	void ReleaseItem(int _iInput);
+	CObj* ReleaseItem(int _iInput);
+	void ReleaseInven(int _iInput);
 
 	virtual void Initialize();
 	virtual void Render();

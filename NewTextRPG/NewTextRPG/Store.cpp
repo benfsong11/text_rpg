@@ -33,12 +33,6 @@ vector<CObj*> CStore::GetItem()
 
 void CStore::Initialize(void)
 {
-}
-
-void CStore::Update(void)
-{
-	int iInput = 0;
-
 	CItem* pBeginnerWeapon = new CItem;
 	pBeginnerWeapon->SetItem(ITEM_WEAPON, BEGINNER);
 	m_vecItem[ITEM_WEAPON].push_back(pBeginnerWeapon);
@@ -62,6 +56,11 @@ void CStore::Update(void)
 	CItem* pAdvancedArmor = new CItem;
 	pAdvancedArmor->SetItem(ITEM_ARMOR, ADVANCED);
 	m_vecItem[ITEM_ARMOR].push_back(pAdvancedArmor);
+}
+
+void CStore::Update(void)
+{
+	int iInput = 0;
 
 	while (true)
 	{
